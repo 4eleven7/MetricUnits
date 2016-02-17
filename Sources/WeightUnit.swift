@@ -8,17 +8,7 @@
 
 import Foundation
 
-struct MetricUnit<T: MetricUnitType>
-{
-	let rawValue: Double
-	let unit: T
-	
-	func to(toUnit: T) -> MetricUnit<T>
-	{
-		let base = rawValue * unit.rawValue
-		return MetricUnit(rawValue: base / toUnit.rawValue, unit: toUnit)
-	}
-}
+typealias Weight = MetricUnit<WeightUnit>
 
 enum WeightUnit: Double, MetricUnitType
 {
@@ -38,10 +28,3 @@ extension Double
 		return MetricUnit(rawValue: self, unit: WeightUnit.Kilograms)
 	}
 }
-
-protocol MetricUnitType
-{
-	var rawValue: Double { get }
-}
-
-typealias Weight = MetricUnit<WeightUnit>
