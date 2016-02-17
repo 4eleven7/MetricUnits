@@ -12,16 +12,27 @@ struct Weight
 {
 	let rawValue: Double
 	let unit: WeightUnit
+	
+	func to(toUnit: WeightUnit) -> Weight
+	{
+		let base = rawValue * unit.rawValue
+		return Weight(rawValue: base / toUnit.rawValue, unit: toUnit)
+	}
 }
 
 enum WeightUnit: Double
 {
-	case Kilogram = 1_000
+	case Grams = 1
+	case Kilograms = 1_000
 }
 
 extension Double
 {
+	var g: Weight {
+		return Weight(rawValue: self, unit: .Grams)
+	}
+	
 	var kg: Weight {
-		return Weight(rawValue: self, unit: .Kilogram)
+		return Weight(rawValue: self, unit: .Kilograms)
 	}
 }
