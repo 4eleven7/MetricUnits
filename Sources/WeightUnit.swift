@@ -28,11 +28,13 @@ enum WeightUnit: Double
 
 extension Double
 {
-	var g: Weight {
+	var g: Weight { return self.grams }
+	var grams: Weight {
 		return Weight(rawValue: self, unit: .Grams)
 	}
 	
-	var kg: Weight {
+	var kg: Weight { return self.kilograms }
+	var kilograms: Weight {
 		return Weight(rawValue: self, unit: .Kilograms)
 	}
 }

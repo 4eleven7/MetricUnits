@@ -15,12 +15,18 @@ class WeightUnitTests: XCTestCase
 	{
 		let weight = 84.kg
 		XCTAssertEqual(weight.rawValue, 84, "Weight should equal 84 kilograms")
+		
+		let target = 80.kilograms
+		XCTAssertEqual(target.rawValue, 80, "Target weight should equal 80 kilograms")
 	}
 	
 	func testExactWeightInKilograms()
 	{
 		let weight = 84.4.kg
 		XCTAssertEqual(weight.rawValue, 84.4, "Weight should equal 84.4 kilograms")
+		
+		let target = 80.2.kilograms
+		XCTAssertEqual(target.rawValue, 80.2, "Target weight should equal 80.2 kilograms")
 	}
 	
 	func testConvertingKilogramsToGrams()
