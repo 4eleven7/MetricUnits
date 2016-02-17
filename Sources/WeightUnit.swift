@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct Weight
+struct MetricUnit<T: MetricUnitType>
 {
 	let rawValue: Double
-	let unit: WeightUnit
+	let unit: T
 	
-	func to(toUnit: WeightUnit) -> Weight
+	func to(toUnit: T) -> MetricUnit<T>
 	{
 		let base = rawValue * unit.rawValue
-		return Weight(rawValue: base / toUnit.rawValue, unit: toUnit)
+		return MetricUnit(rawValue: base / toUnit.rawValue, unit: toUnit)
 	}
 }
 
-enum WeightUnit: Double
+enum WeightUnit: Double, MetricUnitType
 {
 	case Grams = 1
 	case Kilograms = 1_000
@@ -30,11 +30,18 @@ extension Double
 {
 	var g: Weight { return self.grams }
 	var grams: Weight {
-		return Weight(rawValue: self, unit: .Grams)
+		return MetricUnit(rawValue: self, unit: WeightUnit.Grams)
 	}
 	
 	var kg: Weight { return self.kilograms }
 	var kilograms: Weight {
-		return Weight(rawValue: self, unit: .Kilograms)
+		return MetricUnit(rawValue: self, unit: WeightUnit.Kilograms)
 	}
 }
+
+protocol MetricUnitType
+{
+	var rawValue: Double { get }
+}
+
+typealias Weight = MetricUnit<WeightUnit>
