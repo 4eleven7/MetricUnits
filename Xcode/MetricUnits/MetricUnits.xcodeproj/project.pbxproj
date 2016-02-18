@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		791763B21C73962700EF0E3C /* MetricUnits.h in Headers */ = {isa = PBXBuildFile; fileRef = 791763B11C73962700EF0E3C /* MetricUnits.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		791763B91C73962700EF0E3C /* MetricUnits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 791763AE1C73962700EF0E3C /* MetricUnits.framework */; };
-		791763C91C73979000EF0E3C /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791763C81C73979000EF0E3C /* WeightUnit.swift */; };
 		791763CB1C7397D000EF0E3C /* WeightUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791763CA1C7397D000EF0E3C /* WeightUnitTests.swift */; };
+		7942857F1C76721400E4F5D3 /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942857D1C76721400E4F5D3 /* LengthUnit.swift */; };
+		794285801C76721400E4F5D3 /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942857E1C76721400E4F5D3 /* WeightUnit.swift */; };
+		794285841C76742100E4F5D3 /* LengthUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794285831C76742100E4F5D3 /* LengthUnitTests.swift */; };
 		79B017EC1C753C3F00DC2F3F /* MetricUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B017EB1C753C3F00DC2F3F /* MetricUnit.swift */; };
 		79B017EE1C753C4B00DC2F3F /* MetricUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B017ED1C753C4B00DC2F3F /* MetricUnitTests.swift */; };
 /* End PBXBuildFile section */
@@ -31,8 +33,10 @@
 		791763B31C73962700EF0E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791763B81C73962700EF0E3C /* MetricUnitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetricUnitsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791763BF1C73962700EF0E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		791763C81C73979000EF0E3C /* WeightUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightUnit.swift; path = ../../../Sources/WeightUnit.swift; sourceTree = "<group>"; };
 		791763CA1C7397D000EF0E3C /* WeightUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightUnitTests.swift; path = ../../../Tests/WeightUnitTests.swift; sourceTree = "<group>"; };
+		7942857D1C76721400E4F5D3 /* LengthUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthUnit.swift; path = ../../../Sources/LengthUnit.swift; sourceTree = "<group>"; };
+		7942857E1C76721400E4F5D3 /* WeightUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeightUnit.swift; path = ../../../Sources/WeightUnit.swift; sourceTree = "<group>"; };
+		794285831C76742100E4F5D3 /* LengthUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LengthUnitTests.swift; path = ../../../Tests/LengthUnitTests.swift; sourceTree = "<group>"; };
 		79B017EB1C753C3F00DC2F3F /* MetricUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetricUnit.swift; path = ../../../Sources/MetricUnit.swift; sourceTree = "<group>"; };
 		79B017ED1C753C4B00DC2F3F /* MetricUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MetricUnitTests.swift; path = ../../../Tests/MetricUnitTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				79B017EB1C753C3F00DC2F3F /* MetricUnit.swift */,
-				791763C81C73979000EF0E3C /* WeightUnit.swift */,
+				794285811C7673FB00E4F5D3 /* Units */,
 				791763B31C73962700EF0E3C /* Info.plist */,
 				791763B11C73962700EF0E3C /* MetricUnits.h */,
 			);
@@ -89,10 +93,28 @@
 			isa = PBXGroup;
 			children = (
 				79B017ED1C753C4B00DC2F3F /* MetricUnitTests.swift */,
-				791763CA1C7397D000EF0E3C /* WeightUnitTests.swift */,
+				794285821C76740E00E4F5D3 /* Units */,
 				791763BF1C73962700EF0E3C /* Info.plist */,
 			);
 			path = MetricUnitsTests;
+			sourceTree = "<group>";
+		};
+		794285811C7673FB00E4F5D3 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				7942857E1C76721400E4F5D3 /* WeightUnit.swift */,
+				7942857D1C76721400E4F5D3 /* LengthUnit.swift */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
+		794285821C76740E00E4F5D3 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				791763CA1C7397D000EF0E3C /* WeightUnitTests.swift */,
+				794285831C76742100E4F5D3 /* LengthUnitTests.swift */,
+			);
+			name = Units;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				791763C91C73979000EF0E3C /* WeightUnit.swift in Sources */,
+				7942857F1C76721400E4F5D3 /* LengthUnit.swift in Sources */,
 				79B017EC1C753C3F00DC2F3F /* MetricUnit.swift in Sources */,
+				794285801C76721400E4F5D3 /* WeightUnit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				794285841C76742100E4F5D3 /* LengthUnitTests.swift in Sources */,
 				791763CB1C7397D000EF0E3C /* WeightUnitTests.swift in Sources */,
 				79B017EE1C753C4B00DC2F3F /* MetricUnitTests.swift in Sources */,
 			);
