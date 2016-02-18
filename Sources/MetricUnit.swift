@@ -43,3 +43,19 @@ func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 	let unit = (left.rawValue > right.rawValue) ? lhs.unit : rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue - rhs.to(unit).rawValue, unit: unit)
 }
+
+func > <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
+{
+	let left = lhs.to(T.baseUnit)
+	let right = rhs.to(T.baseUnit)
+	
+	return left.rawValue > right.rawValue
+}
+
+func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
+{
+	let left = lhs.to(T.baseUnit)
+	let right = rhs.to(T.baseUnit)
+	
+	return left.rawValue < right.rawValue
+}

@@ -66,6 +66,22 @@ class MetricUnitTests: XCTestCase
 		XCTAssertEqual(glassesRemaining.unit, TestRandomUnit.Glass, "We should be getting a Glass back")
 	}
 	
+	func testComparingMetricsOperation()
+	{
+		let oneGlass = TestRandom(rawValue: 1, unit: .Glass)
+		let threeGlasses = TestRandom(rawValue: 3, unit: .Glass)
+		let jug = TestRandom(rawValue: 1, unit: .Jug)
+		let bucket = TestRandom(rawValue: 1, unit: .Bucket)
+		
+		XCTAssertTrue(bucket > jug, "A bucket is more than a jug")
+		XCTAssertTrue(threeGlasses > jug, "3 glasses is more than a jug")
+		XCTAssertTrue(jug > oneGlass, "A jug is more than 1 glass")
+		
+		XCTAssertTrue(jug < bucket, "A jug is less than a bucket")
+		XCTAssertTrue(jug < threeGlasses, "A jug is less than 3 glasses")
+		XCTAssertTrue(oneGlass < jug, "1 glass is less than a jug")
+	}
+	
 	enum TestRandomUnit: Double, MetricUnitType
 	{
 		case Glass = 1
