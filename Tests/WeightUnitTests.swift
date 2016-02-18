@@ -46,4 +46,22 @@ class WeightUnitTests: XCTestCase
 		let kilograms = grams.to(.Kilograms)
 		XCTAssertEqual(kilograms.rawValue, 0.54, "Weight should equal 0.54 kilograms")
 	}
+	
+	func testConvertingKilogramsToMilligrams()
+	{
+		let kilograms = 45.kg
+		XCTAssertEqual(kilograms.rawValue, 45, "Weight should equal 45 kilograms")
+		
+		let milligrams = kilograms.to(.Milligrams)
+		XCTAssertEqual(milligrams.rawValue, 45_000_000, "Weight should equal 45,000,000 milligrams")
+	}
+	
+	func testConvertingMilligramsToKilograms()
+	{
+		let milligrams = 8_000_000.mg
+		XCTAssertEqual(milligrams.rawValue, 8_000_000, "Weight should equal 8,000,000 milligrams")
+		
+		let kilograms = milligrams.to(.Kilograms)
+		XCTAssertEqual(kilograms.rawValue, 8, "Weight should equal 8 kilograms")
+	}
 }

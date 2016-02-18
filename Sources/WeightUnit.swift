@@ -12,12 +12,18 @@ typealias Weight = MetricUnit<WeightUnit>
 
 enum WeightUnit: Double, MetricUnitType
 {
+	case Milligrams = 0.001
 	case Grams = 1
 	case Kilograms = 1_000
 }
 
 extension Double
 {
+	var mg: Weight { return self.milligrams }
+	var milligrams: Weight {
+		return MetricUnit(rawValue: self, unit: WeightUnit.Milligrams)
+	}
+	
 	var g: Weight { return self.grams }
 	var grams: Weight {
 		return MetricUnit(rawValue: self, unit: WeightUnit.Grams)
