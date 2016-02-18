@@ -37,3 +37,13 @@ func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 	
 	return MetricUnit(rawValue: leftValue + rightValue, unit: unit)
 }
+
+func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+{
+	let unit = lhs.unit
+	
+	let leftValue = lhs.rawValue * unit.rawValue
+	let rightValue = rhs.to(unit).rawValue * unit.rawValue
+	
+	return MetricUnit(rawValue: leftValue - rightValue, unit: unit)
+}
