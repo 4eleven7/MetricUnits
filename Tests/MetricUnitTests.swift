@@ -11,37 +11,73 @@ import XCTest
 
 class MetricUnitTests: XCTestCase
 {
-	func testAdditionOperation()
+	func testAdditionOperationSimple()
 	{
-		let darius = TestRandom(rawValue: 1, unit: .Person)
-		let mark = TestRandom(rawValue: 1, unit: .Person)
+		let water = TestRandom(rawValue: 1, unit: .Glass)
+		let fizzy = TestRandom(rawValue: 1, unit: .Glass)
 		
-		let combined = darius + mark
-		XCTAssertEqual(combined.rawValue, 168, "Sewing two people together creates twins. This one should weigh 168. I call him Marius.")
-		XCTAssertEqual(combined.unit, TestRandomWeightsUnit.Person, "We should be getting a Persons weight back")
+		let totalDrinks = water + fizzy
+		
+		XCTAssertEqual(totalDrinks.rawValue, 2, "We should have two glasses of drinks")
+		XCTAssertEqual(totalDrinks.unit, TestRandomUnit.Glass, "We should be getting a Glass back")
 	}
 	
-	func testSubtractionOperation()
+	func testAdditionOperationComplex()
 	{
-		let chicken = TestRandom(rawValue: 1, unit: .Chicken)
-		let feathers = TestRandom(rawValue: 175, unit: .Feathers)
+		let water = TestRandom(rawValue: 3, unit: .Glass)
+		let fizzy = TestRandom(rawValue: 1, unit: .Bottle)
+		let glass = TestRandom(rawValue: 1, unit: .Glass)
 		
-		let pluck = chicken - feathers
-		XCTAssertEqual(pluck.rawValue, 15, "If you pluck 175 feathers from a chicken, your chicken should weigh 22")
-		XCTAssertEqual(pluck.unit, TestRandomWeightsUnit.Chicken, "We should be getting the Chickens weight back, not the feathers")
+		let totalBottles = water + fizzy
+		
+		XCTAssertEqual(totalBottles.rawValue, 2, "We should have two bottles of drinks")
+		XCTAssertEqual(totalBottles.unit, TestRandomUnit.Bottle, "We should be getting a Bottle back")
+		
+		let totalDrinks = glass + totalBottles
+		
+		XCTAssertEqualWithAccuracy(totalDrinks.rawValue, 2.3, accuracy: 0.1, "We should have two bottles of drinks")
+		XCTAssertEqual(totalDrinks.unit, TestRandomUnit.Bottle, "We should be getting a Bottle back")
 	}
 	
-	enum TestRandomWeightsUnit: Double, MetricUnitType
+	func testSubtractionOperationSimple()
 	{
-		case Feathers = 0.04
-		case Chicken = 22
+		let totalDrinks = TestRandom(rawValue: 42, unit: .Glass)
+		let water = TestRandom(rawValue: 1, unit: .Glass)
 		
-		case Person = 84
+		let avaliableDrinks = totalDrinks - water
 		
-		static var baseUnit: TestRandomWeightsUnit {
-			return .Person
+		XCTAssertEqual(avaliableDrinks.rawValue, 41, "We should have 41 glasses of drinks remaining")
+		XCTAssertEqual(avaliableDrinks.unit, TestRandomUnit.Glass, "We should be getting a Glass back")
+	}
+	
+	func testSubtractionOperationComplex()
+	{
+		let totalWater = TestRandom(rawValue: 1, unit: .Bucket)
+		let glasses = TestRandom(rawValue: 3, unit: .Glass)
+		
+		let waterRemaining = totalWater - glasses
+		
+		XCTAssertEqual(waterRemaining.rawValue, 0.25, "We should have a quarter of a bucket remaining")
+		XCTAssertEqual(waterRemaining.unit, TestRandomUnit.Bucket, "We should be getting a Bucket back")
+		
+		let glassesRemaining = waterRemaining.to(.Glass)
+		
+		XCTAssertEqual(glassesRemaining.rawValue, 1, "We should have one glass remaining")
+		XCTAssertEqual(glassesRemaining.unit, TestRandomUnit.Glass, "We should be getting a Glass back")
+	}
+	
+	enum TestRandomUnit: Double, MetricUnitType
+	{
+		case Glass = 1
+		case Jug = 2
+		case Bottle = 3
+		case Bucket = 4
+		case Ocean = 500
+		
+		static var baseUnit: TestRandomUnit {
+			return .Glass
 		}
 	}
 
-	typealias TestRandom = MetricUnit<TestRandomWeightsUnit>
+	typealias TestRandom = MetricUnit<TestRandomUnit>
 }
