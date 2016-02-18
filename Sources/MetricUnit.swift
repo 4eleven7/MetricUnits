@@ -13,10 +13,13 @@ struct MetricUnit<T: MetricUnitType>
 	let rawValue: Double
 	let unit: T
 	
+	private var quanity: Double {
+		return rawValue * unit.rawValue
+	}
+	
 	func to(toUnit: T) -> MetricUnit<T>
 	{
-		let base = rawValue * unit.rawValue
-		return MetricUnit(rawValue: base / toUnit.rawValue, unit: toUnit)
+		return MetricUnit(rawValue: quanity / toUnit.rawValue, unit: toUnit)
 	}
 }
 
@@ -31,19 +34,13 @@ protocol MetricUnitType
 func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = lhs.unit
-	
-	let leftValue = lhs.rawValue * unit.rawValue
-	let rightValue = rhs.to(unit).rawValue * unit.rawValue
-	
-	return MetricUnit(rawValue: leftValue + rightValue, unit: unit)
+	let addition = rhs.to(unit).quanity
+	return MetricUnit(rawValue: lhs.quanity + addition, unit: unit)
 }
 
 func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = lhs.unit
-	
-	let leftValue = lhs.rawValue * unit.rawValue
-	let rightValue = rhs.to(unit).rawValue * unit.rawValue
-	
-	return MetricUnit(rawValue: leftValue - rightValue, unit: unit)
+	let subtraction = rhs.to(unit).quanity
+	return MetricUnit(rawValue: lhs.quanity - subtraction, unit: unit)
 }
