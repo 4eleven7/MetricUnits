@@ -1,7 +1,7 @@
 # MetricUnits
 Easy to use, read, and convert, units of measurement in Swift.
 
-## Do
+## What it does
 * Code as if you were writing (`120.kilograms`)
 * Commonly used have shorthand (`120.kg`) and singular (`1.gram`), all units have plural (`2.grams`)
 * Supports operators (subtract, multiply, divide, add)
@@ -10,8 +10,11 @@ Easy to use, read, and convert, units of measurement in Swift.
 * Supports standard Swift number formatting (`let everest = 884_800.00.cm`)
 * Create typed arrays (Weight units only array)
 
-## Don’t
+## What it doesn’t do
 * Swift doesn’t allow `kg` or `kilograms` as a postfix, so `120kg` will never be. (Prove me wrong, *is there a better way?*)
+* Support Imperial
+* Localisation
+* Doesn’t throw on divide by zero - returns nan - pretty untested currently.
 
 ## Current supported Units
 * Weights
