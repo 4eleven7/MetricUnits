@@ -13,16 +13,16 @@ class LengthUnitTests: XCTestCase
 {
 	func testAllLengthUnits()
 	{
-		XCTAssertTrue(10.mm == 1.cm, "1 centimetre should equal 10 millimetres")
+		XCTAssertEqual(0.5.metres, 500.millimetres, "Milligrams should equal 0.5 metres")
 		
-		XCTAssertTrue(10.cm == 1.decimetres, "1 decimetre should equal 10 centimetre")
+		XCTAssertEqual(2.metres, 200.centimetres, "Centigram should equal 2 metres")
 		
-		XCTAssertTrue(10.decimetres == 1.metres, "1 decimetre should equal 1 metre")
+		XCTAssertEqual(3.metres, 30.decimetres, "Decigrams should equal 3 metres")
 		
-		XCTAssertTrue(10.metres == 1.dekametres, "1 dekametre should equal 10 metres")
+		XCTAssertEqual(40.metres, 4.dekametres, "Dekagrams should equal 40 metres")
 		
-		XCTAssertTrue(10.dekametres == 1.hectometres, "1 hectometres should equal 10 dekametres")
+		XCTAssertEqual(500.metres, 5.hectometres, "Hectograms should equal 500 metres")
 		
-		XCTAssertTrue(10.hectometres == 1.kilometres, "1 kilometres should equal 10 hectometres")
+		XCTAssertEqual(1_500.metres, 1.5.kilometres, "Kilograms should equal 1,500 metres")
 	}
 }
