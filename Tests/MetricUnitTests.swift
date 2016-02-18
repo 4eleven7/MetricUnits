@@ -95,6 +95,34 @@ class MetricUnitTests: XCTestCase
 		XCTAssertTrue(bucket == largeJug, "A bucket should contain two jugs")
 	}
 	
+	func testCanBeStoredInArray()
+	{
+		let stock:[TestRandom] = [
+									TestRandom(rawValue: 1, unit: .Glass),
+									TestRandom(rawValue: 2, unit: .Glass),
+									TestRandom(rawValue: 3, unit: .Glass)
+								]
+		
+		XCTAssertEqual(stock.count, 3, "Our stock count should be 3")
+		XCTAssertEqual(stock[0].rawValue, 1, "We should have 1 unit of Glass")
+		XCTAssertEqual(stock[1].rawValue, 2, "We should have 2 unit of Glass")
+		XCTAssertEqual(stock[2].rawValue, 3, "We should have 3 unit of Glass")
+		
+		
+	}
+	
+	func testCanBeStoredInDictionary()
+	{
+		let stock: [String: TestRandom] = [
+											"cola" : TestRandom(rawValue: 2, unit: .Glass),
+											"water" : TestRandom(rawValue: 7, unit: .Glass)
+										]
+		
+		XCTAssertEqual(stock.count, 2,  "Our stock count should be 2")
+		XCTAssertEqual(stock["cola"]?.rawValue, 2,  "Our stock should contain 2 cokes")
+		XCTAssertEqual(stock["water"]?.rawValue, 7,  "Our stock should contain 7 waters")
+	}
+	
 	enum TestRandomUnit: Double, MetricUnitType
 	{
 		case Glass = 1
