@@ -15,6 +15,10 @@ enum WeightUnit: Double, MetricUnitType
 	case Milligrams = 0.001
 	case Grams = 1
 	case Kilograms = 1_000
+	
+	static var baseUnit: WeightUnit {
+		return .Grams
+	}
 }
 
 extension Double
