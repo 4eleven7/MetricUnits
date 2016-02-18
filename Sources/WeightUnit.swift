@@ -21,16 +21,25 @@ public enum WeightUnit: Double, MetricUnitType
 	case Kilograms = 1_000
 	case Ton = 1_000_000
 	
-	public static var baseUnit: WeightUnit {
+	public static var baseUnit: WeightUnit
+	{
 		return .Grams
 	}
 }
 
 public extension Double
 {
-	var mg: Weight { return self.milligrams }
-	var g: Weight { return self.grams }
-	var kg: Weight { return self.kilograms }
+	var mg: Weight {
+		return self.milligrams
+	}
+	
+	var g: Weight {
+		return self.grams
+	}
+	
+	var kg: Weight {
+		return self.kilograms
+	}
 }
 
 public extension Double
@@ -59,8 +68,7 @@ public extension Double
 		return MetricUnit(rawValue: self, unit: WeightUnit.Hectograms)
 	}
 	
-	var kilograms: Weight
-	{
+	var kilograms: Weight {
 		return MetricUnit(rawValue: self, unit: WeightUnit.Kilograms)
 	}
 	

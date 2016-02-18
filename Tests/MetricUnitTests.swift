@@ -164,7 +164,8 @@ class MetricUnitTests: XCTestCase
 		case Bucket = 4
 		case Ocean = 500
 		
-		static var baseUnit: TestRandomUnit {
+		static var baseUnit: TestRandomUnit
+		{
 			return .Glass
 		}
 	}
