@@ -52,6 +52,12 @@ func * <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue * rhs.to(unit).rawValue, unit: unit)
 }
 
+func / <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+{
+	let unit = rhs.unit
+	return MetricUnit(rawValue: lhs.to(unit).rawValue / rhs.to(unit).rawValue, unit: unit)
+}
+
 // MARK: Comparable
 
 func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool

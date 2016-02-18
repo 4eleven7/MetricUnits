@@ -83,6 +83,22 @@ class MetricUnitTests: XCTestCase
 		XCTAssertEqual(numberOfJugsNeeded.unit, TestRandomUnit.Jug, "We should be getting a Glass back")
 	}
 	
+	func testDivisionOperationSimple()
+	{
+		let glass = TestRandom(rawValue: 1, unit: .Glass)
+		let jugs = TestRandom(rawValue: 2, unit: .Jug)
+		
+		let numberOfGlassesNeeded = jugs / glass
+		
+		XCTAssertEqual(numberOfGlassesNeeded.rawValue, 4, "We should have 4 glasses for two jugs")
+		XCTAssertEqual(numberOfGlassesNeeded.unit, TestRandomUnit.Glass, "We should be getting a Glass back")
+		
+		let numberOfJugsNeeded = glass / jugs
+		
+		XCTAssertEqual(numberOfJugsNeeded.rawValue, 0.25, "We should have 4 glasses for two jugs")
+		XCTAssertEqual(numberOfJugsNeeded.unit, TestRandomUnit.Jug, "We should be getting a Jug back")
+	}
+	
 	func testComparableMetricsOperation()
 	{
 		let oneGlass = TestRandom(rawValue: 1, unit: .Glass)
