@@ -26,6 +26,8 @@ protocol MetricUnitType
 	var rawValue: Double { get }
 }
 
+// MARK: Operators
+
 func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let left = lhs.to(T.baseUnit)
