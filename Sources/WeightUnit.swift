@@ -8,20 +8,20 @@
 
 import Foundation
 
-typealias Weight = MetricUnit<WeightUnit>
+public typealias Weight = MetricUnit<WeightUnit>
 
-enum WeightUnit: Double, MetricUnitType
+public enum WeightUnit: Double, MetricUnitType
 {
 	case Milligrams = 0.001
 	case Grams = 1
 	case Kilograms = 1_000
 	
-	static var baseUnit: WeightUnit {
+	public static var baseUnit: WeightUnit {
 		return .Grams
 	}
 }
 
-extension Double
+public extension Double
 {
 	var mg: Weight { return self.milligrams }
 	var milligrams: Weight {

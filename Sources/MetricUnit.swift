@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MetricUnit<T: MetricUnitType>: Comparable
+public struct MetricUnit<T: MetricUnitType>: Comparable
 {
 	let rawValue: Double
 	let unit: T
@@ -24,7 +24,7 @@ struct MetricUnit<T: MetricUnitType>: Comparable
 	}
 }
 
-protocol MetricUnitType
+public protocol MetricUnitType
 {
 	static var baseUnit: Self { get }
 	
@@ -33,25 +33,25 @@ protocol MetricUnitType
 
 // MARK: Operators
 
-func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+public func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = (lhs.baseUnitValue > rhs.baseUnitValue) ? lhs.unit : rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue + rhs.to(unit).rawValue, unit: unit)
 }
 
-func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+public func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = (lhs.baseUnitValue > rhs.baseUnitValue) ? lhs.unit : rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue - rhs.to(unit).rawValue, unit: unit)
 }
 
-func * <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+public func * <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = lhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue * rhs.to(unit).rawValue, unit: unit)
 }
 
-func / <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
+public func / <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
 	let unit = rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue / rhs.to(unit).rawValue, unit: unit)
@@ -59,12 +59,12 @@ func / <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 
 // MARK: Comparable
 
-func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
+public func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 {
 	return lhs.baseUnitValue < rhs.baseUnitValue
 }
 
-func == <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
+public func == <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 {
 	return lhs.baseUnitValue == rhs.baseUnitValue
 }
