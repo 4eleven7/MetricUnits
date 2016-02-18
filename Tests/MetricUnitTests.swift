@@ -130,7 +130,7 @@ class MetricUnitTests: XCTestCase
 	
 	func testCanBeStoredInArray()
 	{
-		let stock:[TestRandom] = [
+		let stock: [TestRandom] = [
 									TestRandom(rawValue: 1, unit: .Glass),
 									TestRandom(rawValue: 2, unit: .Glass),
 									TestRandom(rawValue: 3, unit: .Glass)

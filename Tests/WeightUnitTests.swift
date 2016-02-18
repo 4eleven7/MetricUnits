@@ -64,4 +64,21 @@ class WeightUnitTests: XCTestCase
 		let kilograms = milligrams.to(.Kilograms)
 		XCTAssertEqual(kilograms.rawValue, 8, "Weight should equal 8 kilograms")
 	}
+	
+	func testAllWeightUnits()
+	{
+		XCTAssertTrue(0.5.g == 500.mg, "Milligrams should equal 0.5 grams")
+		
+		XCTAssertTrue(2.g == 200.centigrams, "Centigram should equal 2 grams")
+		
+		XCTAssertTrue(3.g == 30.decigrams, "Decigrams should equal 3 grams")
+		
+		XCTAssertTrue(40.g == 4.dekagrams, "Dekagrams should equal 40 grams")
+		
+		XCTAssertTrue(500.g == 5.hectograms, "Hectograms should equal 500 grams")
+		
+		XCTAssertTrue(1_500.g == 1.5.kg, "Kilograms should equal 1,500 grams")
+		
+		XCTAssertTrue(65_000_000.g == 65.ton, "Hectograms should equal 1,000,000 grams")
+	}
 }
