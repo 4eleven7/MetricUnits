@@ -13,11 +13,12 @@ class MetricUnitTests: XCTestCase
 {
 	func testAdditionOperation()
 	{
-		let john = TestRandom(rawValue: 1, unit: .Person)
-		let peter = TestRandom(rawValue: 1, unit: .Person)
+		let darius = TestRandom(rawValue: 1, unit: .Person)
+		let mark = TestRandom(rawValue: 1, unit: .Person)
 		
-		let combined = john + peter
-		XCTAssertEqual(combined.rawValue, 168, "Sewing two people together creates twins. This one should weigh 168")
+		let combined = darius + mark
+		XCTAssertEqual(combined.rawValue, 168, "Sewing two people together creates twins. This one should weigh 168. I call him Marius.")
+		XCTAssertEqual(combined.unit, TestRandomWeightsUnit.Person, "We should be getting a Persons weight back")
 	}
 	
 	func testSubtractionOperation()
@@ -27,6 +28,7 @@ class MetricUnitTests: XCTestCase
 		
 		let pluck = chicken - feathers
 		XCTAssertEqual(pluck.rawValue, 15, "If you pluck 175 feathers from a chicken, your chicken should weigh 22")
+		XCTAssertEqual(pluck.unit, TestRandomWeightsUnit.Chicken, "We should be getting the Chickens weight back, not the feathers")
 	}
 	
 	enum TestRandomWeightsUnit: Double, MetricUnitType
