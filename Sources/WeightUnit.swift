@@ -29,21 +29,6 @@ public enum WeightUnit: Double, MetricUnitType
 
 public extension Double
 {
-	var mg: Weight {
-		return self.milligrams
-	}
-	
-	var g: Weight {
-		return self.grams
-	}
-	
-	var kg: Weight {
-		return self.kilograms
-	}
-}
-
-public extension Double
-{
 	var milligrams: Weight {
 		return MetricUnit(rawValue: self, unit: WeightUnit.Milligrams)
 	}
@@ -74,5 +59,36 @@ public extension Double
 	
 	var ton: Weight {
 		return MetricUnit(rawValue: self, unit: WeightUnit.Ton)
+	}
+}
+
+public extension Double
+{
+// MARK: Singular
+	
+	var milligram: Weight {
+		return self.milligrams
+	}
+	
+	var gram: Weight {
+		return self.grams
+	}
+	
+	var kilogram: Weight {
+		return self.kilograms
+	}
+	
+// MARK: Convenience
+	
+	var mg: Weight {
+		return self.milligrams
+	}
+	
+	var g: Weight {
+		return self.grams
+	}
+	
+	var kg: Weight {
+		return self.kilograms
 	}
 }

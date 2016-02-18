@@ -3,7 +3,7 @@ Easy to use, read, and convert, units of measurement in Swift.
 
 ## Do
 * Code as if you were writing (`120.kilograms`)
-* Commonly used have shorthand (`120.kg`)
+* Commonly used have shorthand (`120.kg`) and singular (`1.gram`), all units have plural (`2.grams`)
 * Supports operators (subtract, multiply, divide, add)
 * Strongly typed (no adding a kilogram to a day)
 * Converts easily (days to hours)

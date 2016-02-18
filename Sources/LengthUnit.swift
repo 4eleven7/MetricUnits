@@ -28,25 +28,6 @@ public enum LengthUnit: Double, MetricUnitType
 
 public extension Double
 {
-	var mm: Length {
-		return self.millimetres
-	}
-	
-	var cm: Length {
-		return self.centimetres
-	}
-	
-	var m: Length {
-		return self.metres
-	}
-	
-	var km: Length {
-		return self.kilometres
-	}
-}
-
-public extension Double
-{
 	var millimetres: Length {
 		return MetricUnit(rawValue: self, unit: LengthUnit.Millimetres)
 	}
@@ -73,5 +54,44 @@ public extension Double
 	
 	var kilometres: Length {
 		return MetricUnit(rawValue: self, unit: LengthUnit.Kiilometres)
+	}
+}
+
+public extension Double
+{
+// MARK: Singular
+	
+	var millimetre: Length {
+		return self.millimetres
+	}
+	
+	var centimetre: Length {
+		return self.centimetres
+	}
+	
+	var metre: Length {
+		return self.metres
+	}
+	
+	var kilometre: Length {
+		return self.kilometres
+	}
+	
+// MARK: Convenience
+	
+	var mm: Length {
+		return self.millimetres
+	}
+	
+	var cm: Length {
+		return self.centimetres
+	}
+	
+	var m: Length {
+		return self.metres
+	}
+	
+	var km: Length {
+		return self.kilometres
 	}
 }
