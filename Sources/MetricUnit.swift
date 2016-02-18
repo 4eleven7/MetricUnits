@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MetricUnit<T: MetricUnitType>
+struct MetricUnit<T: MetricUnitType>: Comparable
 {
 	let rawValue: Double
 	let unit: T
@@ -44,13 +44,7 @@ func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue - rhs.to(unit).rawValue, unit: unit)
 }
 
-func > <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
-{
-	let left = lhs.to(T.baseUnit)
-	let right = rhs.to(T.baseUnit)
-	
-	return left.rawValue > right.rawValue
-}
+// MARK: Comparable
 
 func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 {
@@ -58,4 +52,12 @@ func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 	let right = rhs.to(T.baseUnit)
 	
 	return left.rawValue < right.rawValue
+}
+
+func == <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
+{
+	let left = lhs.to(T.baseUnit)
+	let right = rhs.to(T.baseUnit)
+	
+	return left.rawValue == right.rawValue
 }
