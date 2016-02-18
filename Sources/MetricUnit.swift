@@ -17,6 +17,11 @@ struct MetricUnit<T: MetricUnitType>: Comparable
 	{
 		return MetricUnit(rawValue: rawValue * unit.rawValue / toUnit.rawValue, unit: toUnit)
 	}
+	
+	private var baseUnitValue: Double
+	{
+		return to(T.baseUnit).rawValue
+	}
 }
 
 protocol MetricUnitType
@@ -30,19 +35,13 @@ protocol MetricUnitType
 
 func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
-	let left = lhs.to(T.baseUnit)
-	let right = rhs.to(T.baseUnit)
-	
-	let unit = (left.rawValue > right.rawValue) ? lhs.unit : rhs.unit
+	let unit = (lhs.baseUnitValue > rhs.baseUnitValue) ? lhs.unit : rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue + rhs.to(unit).rawValue, unit: unit)
 }
 
 func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
-	let left = lhs.to(T.baseUnit)
-	let right = rhs.to(T.baseUnit)
-	
-	let unit = (left.rawValue > right.rawValue) ? lhs.unit : rhs.unit
+	let unit = (lhs.baseUnitValue > rhs.baseUnitValue) ? lhs.unit : rhs.unit
 	return MetricUnit(rawValue: lhs.to(unit).rawValue - rhs.to(unit).rawValue, unit: unit)
 }
 
@@ -62,16 +61,10 @@ func / <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit
 
 func < <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 {
-	let left = lhs.to(T.baseUnit)
-	let right = rhs.to(T.baseUnit)
-	
-	return left.rawValue < right.rawValue
+	return lhs.baseUnitValue < rhs.baseUnitValue
 }
 
 func == <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> Bool
 {
-	let left = lhs.to(T.baseUnit)
-	let right = rhs.to(T.baseUnit)
-	
-	return left.rawValue == right.rawValue
+	return lhs.baseUnitValue == rhs.baseUnitValue
 }
