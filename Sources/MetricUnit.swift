@@ -13,34 +13,33 @@ struct MetricUnit<T: MetricUnitType>
 	let rawValue: Double
 	let unit: T
 	
-	private var quanity: Double {
-		return rawValue * unit.rawValue
-	}
-	
 	func to(toUnit: T) -> MetricUnit<T>
 	{
-		return MetricUnit(rawValue: quanity / toUnit.rawValue, unit: toUnit)
+		return MetricUnit(rawValue: rawValue * unit.rawValue / toUnit.rawValue, unit: toUnit)
 	}
 }
 
 protocol MetricUnitType
 {
-	typealias T
-	static var baseUnit: T { get }
+	static var baseUnit: Self { get }
 	
 	var rawValue: Double { get }
 }
 
 func + <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
-	let unit = lhs.unit
-	let addition = rhs.to(unit).quanity
-	return MetricUnit(rawValue: lhs.quanity + addition, unit: unit)
+	let left = lhs.to(T.baseUnit)
+	let right = rhs.to(T.baseUnit)
+	
+	let unit = (left.rawValue > right.rawValue) ? lhs.unit : rhs.unit
+	return MetricUnit(rawValue: lhs.to(unit).rawValue + rhs.to(unit).rawValue, unit: unit)
 }
 
 func - <T: MetricUnitType>(lhs: MetricUnit<T>, rhs: MetricUnit<T>) -> MetricUnit<T>
 {
-	let unit = lhs.unit
-	let subtraction = rhs.to(unit).quanity
-	return MetricUnit(rawValue: lhs.quanity - subtraction, unit: unit)
+	let left = lhs.to(T.baseUnit)
+	let right = rhs.to(T.baseUnit)
+	
+	let unit = (left.rawValue > right.rawValue) ? lhs.unit : rhs.unit
+	return MetricUnit(rawValue: lhs.to(unit).rawValue - rhs.to(unit).rawValue, unit: unit)
 }
