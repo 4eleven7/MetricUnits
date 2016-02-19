@@ -1,6 +1,8 @@
 # MetricUnits
 Easy to use, read, and convert, units of measurement in Swift.
 
+[![Build Status](https://travis-ci.org/4eleven7/MetricUnits.svg?branch=master)](https://travis-ci.org/4eleven7/MetricUnits)
+
 ## What it does
 * Code as if you were writing (`120.kilograms`)
 * Commonly used have shorthand (`120.kg`) and singular (`1.gram`), all units have plural (`2.grams`)
